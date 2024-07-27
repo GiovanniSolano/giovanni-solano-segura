@@ -1,4 +1,4 @@
-import { EntityManager, Repository } from 'typeorm';
+import { EntityManager, FindOptionsWhere, In, Repository } from 'typeorm';
 import { CatalogProductEntity } from '@features/product/entities/product.entity';
 
 /**
@@ -56,6 +56,29 @@ export class ProductRepository {
    */
   public async findById(id: string): Promise<CatalogProductEntity | null> {
     return this.repository.findOne({ where: { id } });
+  }
+
+  /**
+   * Save products or update existing ones in the database.
+   * 
+   * @param products - The product entity array to be saved or updated.
+   * @returns A promise that resolves to the saved CatalogProductEntity.
+   */
+  public async saveBatch(products: CatalogProductEntity[]): Promise<CatalogProductEntity[]> {
+    return this.repository.save(products);
+  }
+
+  /**
+ * Fetch products by their IDs.
+ * @param {string[]} ids - Array of product IDs.
+ * @returns {Promise<CatalogProductEntity[]>} - Promise resolving to an array of products.
+ */
+  public async findByIds(ids: string[]): Promise<CatalogProductEntity[]> {
+    const queryOptions: FindOptionsWhere<CatalogProductEntity> = {
+      id: In(ids),
+    };
+    return this.repository.find({ where: queryOptions });
+
   }
 
 }

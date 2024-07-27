@@ -1,6 +1,6 @@
 import { AppDataSource } from '@database/typeorm.config';
 import { ProductRepository } from '@features/product/repositories';
-import { ProductService } from '@features/product/services/product.service';
+import { ProductService, ProductBatchService } from '@features/product/services';
 
 /**
  * ProductModule
@@ -21,6 +21,18 @@ export class ProductModule {
       this.getProductRepository()
     );
   }
+
+  /**
+   * Retrieves an instance of ProductBatchService.
+   * Initializes the ProductRepository if it has not been created yet.
+   * 
+   * @returns An instance of ProductBatchService.
+   */
+    public static getProductBatchService(): ProductBatchService {
+      return new ProductBatchService(
+        this.getProductRepository()
+      );
+    }
 
   /**
    * Retrieves an instance of ProductRepository.

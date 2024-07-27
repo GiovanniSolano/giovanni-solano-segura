@@ -1,5 +1,6 @@
-import { MigrationInterface, QueryRunner, Table } from "typeorm";
+import { MigrationInterface, QueryRunner, Table, TableForeignKey } from "typeorm";
 import { CATALOG_PRODUCTS_ENTITY_NAME } from "@features/product/entities/product.entity";
+import { USERS_ENTITY_NAME } from "@features/auth/entities";
 
 export class CreateProductsTable1722018867328 implements MigrationInterface {
 
@@ -21,10 +22,45 @@ export class CreateProductsTable1722018867328 implements MigrationInterface {
               { name: 'deleted_by', type: 'varchar', length: '36', isNullable: true }
             ]
           }));
+
+          await queryRunner.createForeignKey(CATALOG_PRODUCTS_ENTITY_NAME, new TableForeignKey({
+            columnNames: ['created_by'],
+            referencedColumnNames: ['id'],
+            referencedTableName: USERS_ENTITY_NAME,
+            onDelete: 'SET NULL',
+            onUpdate: 'CASCADE'
+        }));
+
+        await queryRunner.createForeignKey(CATALOG_PRODUCTS_ENTITY_NAME, new TableForeignKey({
+            columnNames: ['updated_by'],
+            referencedColumnNames: ['id'],
+            referencedTableName: USERS_ENTITY_NAME,
+            onDelete: 'SET NULL',
+            onUpdate: 'CASCADE'
+        }));
+
+        await queryRunner.createForeignKey(CATALOG_PRODUCTS_ENTITY_NAME, new TableForeignKey({
+            columnNames: ['deleted_by'],
+            referencedColumnNames: ['id'],
+            referencedTableName: USERS_ENTITY_NAME,
+            onDelete: 'SET NULL',
+            onUpdate: 'CASCADE'
+        }));
     }
 
     public async down(queryRunner: QueryRunner): Promise<void> {
-        await queryRunner.dropTable(CATALOG_PRODUCTS_ENTITY_NAME);
+      
+      const table = await queryRunner.getTable(CATALOG_PRODUCTS_ENTITY_NAME);
+
+      if(table) {
+        
+        for (const foreignKey of table.foreignKeys) {
+            await queryRunner.dropForeignKey(CATALOG_PRODUCTS_ENTITY_NAME, foreignKey);
+          }
+          
+      }
+
+      await queryRunner.dropTable(CATALOG_PRODUCTS_ENTITY_NAME);
     }
 
 }

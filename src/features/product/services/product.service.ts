@@ -64,4 +64,13 @@ export class ProductService {
   public async delete(deletedProduct: CatalogProductEntity): Promise<CatalogProductEntity> {
     return this.productRepository.save(deletedProduct);
   }
+
+  /**
+   * Fetch products by their IDs.
+   * @param {string[]} ids - Array of product IDs.
+   * @returns {Promise<CatalogProductEntity[]>} - Promise resolving to an array of products.
+   */
+    public async findByIds(ids: string[]): Promise<CatalogProductEntity[]> {
+      return this.productRepository.findByIds(ids);
+    }
 }

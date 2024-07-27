@@ -45,6 +45,13 @@ export const updateProductSchema = Joi.object({
  * DTO for updating a product.
  */
 export class UpdateProductDto {
+
+    /**
+     * The id of the product. Optional field.
+     * @type {string}
+     */
+      public id?: string;
+
     /**
      * The name of the product. Optional field.
      * @type {string}
