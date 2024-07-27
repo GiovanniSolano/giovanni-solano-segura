@@ -1,4 +1,4 @@
-import { CatalogProductEntity } from '@features/product/entities/product.entity';
+import { CatalogProductEntity } from '@features/product/entities';
 import { ProductResumeDto } from '@features/product/dto/response';
 
 /**

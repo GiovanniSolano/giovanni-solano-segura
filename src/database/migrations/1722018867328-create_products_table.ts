@@ -1,5 +1,5 @@
 import { MigrationInterface, QueryRunner, Table, TableForeignKey } from "typeorm";
-import { CATALOG_PRODUCTS_ENTITY_NAME } from "@features/product/entities/product.entity";
+import { CATALOG_PRODUCTS_ENTITY_NAME } from "@features/product/entities";
 import { USERS_ENTITY_NAME } from "@features/auth/entities";
 
 export class CreateProductsTable1722018867328 implements MigrationInterface {

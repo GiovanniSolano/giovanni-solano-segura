@@ -1,5 +1,5 @@
 import { MigrationInterface, QueryRunner, Table } from "typeorm";
-import { USERS_ENTITY_NAME } from "@features/auth/entities/user.entity";
+import { USERS_ENTITY_NAME } from "@features/auth/entities";
 
 export class CreateUsersTable1722018428033 implements MigrationInterface {
 

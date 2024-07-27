@@ -1,5 +1,5 @@
 import { EntityManager, FindOptionsWhere, In, Repository } from 'typeorm';
-import { CatalogProductEntity } from '@features/product/entities/product.entity';
+import { CatalogProductEntity } from '@features/product/entities';
 
 /**
  * ProductRepository
