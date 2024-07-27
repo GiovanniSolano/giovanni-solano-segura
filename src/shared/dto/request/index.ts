@@ -1,0 +1,1 @@
+export * from '@shared/dto/request/pagination-request.dto';

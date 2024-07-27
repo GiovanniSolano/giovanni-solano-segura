@@ -11,7 +11,9 @@ const configValidation = Joi.object({
     DB_USERNAME: Joi.string().required(),
     DB_PASSWORD: Joi.string().allow('').optional(),
     DB_NAME: Joi.string().required(),
-    DB_TYPE: Joi.string().required()
+    DB_TYPE: Joi.string().required(),
+    JWT_SECRET_KEY: Joi.string().required(),
+    JWT_EXPIRES_IN: Joi.string().required()
 })
 .unknown(true).required();
 

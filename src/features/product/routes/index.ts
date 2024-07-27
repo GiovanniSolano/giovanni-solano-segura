@@ -1,0 +1,1 @@
+export * from '@features/product/routes/product.routes';

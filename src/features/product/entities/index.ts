@@ -1,0 +1,1 @@
+export * from '@features/product/entities/product.entity'

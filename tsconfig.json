@@ -9,11 +9,14 @@
     "paths": {
       "@config/*": ["src/config/*"],
       "@database/*": ["src/database/*"],
+      "@features/*": ["src/features/*"],
+      "@shared/*": ["src/shared/*"]
     },
     "strict": true,
     "esModuleInterop": true,
     "skipLibCheck": true,
-    "forceConsistentCasingInFileNames": true
+    "forceConsistentCasingInFileNames": true,
+    "strictPropertyInitialization": false
   },
   "include": ["src/**/*.ts"],
   "exclude": ["node_modules"]

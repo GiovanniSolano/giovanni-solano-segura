@@ -1,0 +1,1 @@
+export * from '@features/product/dto/response/product-resume-response.dto';
